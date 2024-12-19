@@ -1,6 +1,6 @@
-# Apache Spark hacking
+# Apache Spark hacking
 
-## To spin up
+## To spin up
 
 - Make sure Docker service is running
 - `docker-compose up -d`
