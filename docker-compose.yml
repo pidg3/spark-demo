@@ -1,0 +1,24 @@
+version: "3.9" # Specify Docker Compose version
+
+services:
+  postgres:
+    build:
+      context: . # Use the current directory as the build context
+      dockerfile: DB_Dockerfile # Use your PostgreSQL Dockerfile
+    ports:
+      - "5432:5432" # Map PostgreSQL port
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydatabase
+
+  spark:
+    build:
+      context: . # Use the current directory as the build context
+      dockerfile: Spark_Dockerfile # Use your Spark Dockerfile
+    ports:
+      - "8888:8888" # Map Jupyter port
+    volumes:
+      - ./notebooks:/home/jovyan/work # Mount notebooks directory
+    depends_on:
+      - postgres # Ensure PostgreSQL starts before Spark

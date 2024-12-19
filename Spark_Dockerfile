@@ -1,0 +1,11 @@
+FROM quay.io/jupyter/pyspark-notebook:latest
+
+USER root
+
+# Install PostgreSQL JDBC driver
+RUN wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar \
+    && mv postgresql-42.6.0.jar /usr/local/spark/jars/
+
+    # Set the working directory
+WORKDIR /home/jovyan/work
+ 
